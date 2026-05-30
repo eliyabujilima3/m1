@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Meshack W. Makala</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main class="section container">
+    <div class="section-title"><h2>Contact Me</h2></div>
+    <div class="contact-panel">
+      <div class="card">
+        <h3>Let's Connect</h3>
+        <p>I'm always interested in discussing technology, data science, software development, and collaboration opportunities.</p>
+        <p>Email: <a href="mailto:meshack.makala@example.com">meshack.makala@example.com</a></p>
+        <p>GitHub: <a href="https://github.com/your-github-username" target="_blank" rel="noreferrer">your-github-username</a></p>
+      </div>
+      <form id="contact-form" class="card form-group">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your email address" required />
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Brief subject" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project" required></textarea>
+        </div>
+        <button class="button-primary" type="submit">Send Message</button>
+        <p id="contact-status"></p>
+      </form>
+    </div>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="script.js"></script>
+</body>
+</html>

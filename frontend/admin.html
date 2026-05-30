@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Meshack Makala</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <main class="section container">
+    <div class="section-title"><h2>Admin Dashboard</h2></div>
+    <div class="card">
+      <p>View contact messages and reply to inquiries from this interface. This page connects directly to the backend API.</p>
+    </div>
+    <div id="admin-messages" class="message-panel" style="margin-top:2rem;"></div>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="script.js"></script>
+  <script>
+    const listMessages = async () => {
+      const container = document.querySelector('#admin-messages');
+      if (!container) return;
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/api/admin/messages');
+        const payload = await response.json();
+        if (response.ok && payload.success) {
+          const messages = payload.messages;
+          if (!messages.length) {
+            container.innerHTML = '<p>No messages have been received yet.</p>';
+            return;
+          }
+          container.innerHTML = messages.map(msg => `
+            <div class="message-card">
+              <h3>${msg.subject}</h3>
+              <p><strong>${msg.name}</strong> — ${msg.email}</p>
+              <p>${msg.message}</p>
+              <p class="meta">Received: ${new Date(msg.created_at).toLocaleString()}</p>
+              <a class="button-primary" href="reply-view.html?id=${msg.id}">Reply</a>
+            </div>
+          `).join('');
+        } else {
+          container.innerHTML = '<p>Unable to load messages.</p>';
+        }
+      } catch (error) {
+        container.innerHTML = '<p>Unable to connect to the backend. Please start the server and refresh.</p>';
+      }
+    };
+
+    window.addEventListener('DOMContentLoaded', listMessages);
+  </script>
+</body>
+</html>
